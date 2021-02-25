@@ -68,11 +68,11 @@ function [w, infos] = svrgbb(problem, in_options)
     %while (optgap > options.tol_optgap) && (epoch < options.max_epoch)
     while  (epoch < options.max_epoch)
         % permute samples
-        if options.permute_on
-            perm_idx = randperm(n);
-        else
+      %  if options.permute_on
+      %      perm_idx = randperm(n);
+      %  else
             perm_idx = 1:n;
-        end
+      %  end
         
         if epoch 
             % store full gradient
