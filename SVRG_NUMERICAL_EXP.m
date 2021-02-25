@@ -13,8 +13,8 @@ function  SVRG_NUMERICAL_EXP()
     clc;
     clear;
     close all;
-    
-    options.max_epoch=100;    
+    dat='Covtype';
+    options.max_epoch=30;    
 
     
     % generate synthetic data        
@@ -54,9 +54,9 @@ for s=1:5
   
    fprintf('Loop number: S=%d, Step=%d, reg=%d \n',s,step,reg);
    
-    data = MNIST38(seed); %logistic_regression_data_generator(n, d);
+    data = covtype(seed); %logistic_regression_data_generator(n, d);
    % data = MNIST38(seed);
-    options.max_epoch=100;    
+   % options.max_epoch=100;    
     
     % define problem definitions
     problem = logistic_regression1(data.x_train, data.y_train, data.x_test, data.y_test,reg); 
@@ -109,7 +109,7 @@ for s=1:5
      optm = f_opt;
 
 end
-
+if s==5
     info.epoch = info_s1.iter';    
     info.train_ac = (Tr_s1);  %info_s1.std = mean(Tr_s1);
     info.val_ac = (Vl_s1);  %info_s1.std = mean(Tr_s1);
@@ -124,26 +124,26 @@ end
     %T = table(S1.iter',S1.ocost,S1.vcost,S1.otime,S1.train_ac,S1.val_ac,'VariableNames',Var);
     
     if m==1
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRG/svrg_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrg_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');%
     elseif m==2
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRGDH/svrgdh_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrgdh_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');%
     elseif m==3
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRG_BB/svrg_bb_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrg_bb_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');% SVRG_BB with BB step size
     elseif m==4
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRGBB/svrgbb_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrgbb_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');% SVRG_BB with second order info
     elseif m==5
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRG_BBB/svrg_bbb_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrg_bbb_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');% SVRG_BB with BB step size and BB in 2nd order info.
     elseif m==6
-    Name = sprintf('/home/optima/Desktop/SVRG_library/MNIST38/SVRG_2nd/svrg_2nd_%.1e_R_%.1e.mat',options.step_init,reg);
+    Name = sprintf('/home/singh/SVRG_library/%s/svrg_2nd_%.1e_R_%.1e.mat',dat,options.step_init,reg);
     save(Name,'S1');%
     end
     %if NRHO is zero then Nrho=frob_norm of Z;
-
+end
 end
 
 end
