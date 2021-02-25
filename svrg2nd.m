@@ -70,11 +70,11 @@ function [w, infos] = svrg2nd(problem, in_options)
     while  (epoch < options.max_epoch)
 
         % permute samples
-        if options.permute_on
-            perm_idx = randperm(n);
-        else
+       % if options.permute_on
+       %     perm_idx = randperm(n);
+       % else
             perm_idx = 1:n;
-        end
+       % end
 
         % compute full gradient
         full_grad = problem.full_grad(w);
