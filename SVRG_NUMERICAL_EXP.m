@@ -13,8 +13,8 @@ function  SVRG_NUMERICAL_EXP()
     clc;
     clear;
     close all;
-    dat='Covtype';
-    options.max_epoch=30;    
+    dat='sido0';
+    options.max_epoch=40;    
 
     
     % generate synthetic data        
@@ -25,7 +25,7 @@ function  SVRG_NUMERICAL_EXP()
     % generate data
 
 %or rho = [0 1000 100 10 1 0.1 0.01 0.001]
-for m=1:6
+for m=6:6
 
 for reg=[1 0.1 0.01 0.001 0.0001 0.00001]
     
@@ -54,7 +54,7 @@ for s=1:5
   
    fprintf('Loop number: S=%d, Step=%d, reg=%d \n',s,step,reg);
    
-    data = covtype(seed); %logistic_regression_data_generator(n, d);
+    data = sido0(seed); %logistic_regression_data_generator(n, d);
    % data = MNIST38(seed);
    % options.max_epoch=100;    
     
